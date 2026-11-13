@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ConectaNet - Telecomunicaciones y Fibra Óptica</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        :root {
+            --primary-color: #0052cc;
+            --secondary-color: #00c4cc;
+            --dark-color: #1a1a2e;
+            --light-color: #f8f9fa;
+        }
+
+        body {
+            background-color: var(--light-color);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* HEADER Y NAVEGACIÓN */
+        header {
+            background: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--secondary-color);
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .btn-cta {
+            background: var(--primary-color);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background 0.3s;
+        }
+
+        .btn-cta:hover {
+            background: #003d99;
+        }
+
+        /* SECCIÓN HERO (PRINCIPAL) */
+        .hero {
+            background: linear-gradient(135deg, var(--dark-color), #0f3460);
+            color: white;
+            padding: 160px 20px 100px;
+            text-align: center;
+        }
+
+        .hero-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .hero h1 span {
+            color: var(--secondary-color);
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            color: #ddd;
+        }
+
+        /* SECCIÓN SERVICIOS */
+        .services {
+            max-width: 1200px;
+            margin: 80px auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 32px;
+            margin-bottom: 50px;
+            color: var(--dark-color);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: white;
+            padding: 40px 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-card i {
+            font-size: 40px;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .service-card h3 {
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+
+        /* SECCIÓN PLANES */
+        .plans {
+            background: #eef2f7;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .plans-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .plan-card {
+            background: white;
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            position: relative;
+        }
+
+        .plan-card.popular {
+            border: 2px solid var(--primary-color);
+        }
+
+        .badge {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary-color);
+            color: white;
+            padding: 5px 15px;
+            font-size: 12px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
+        .plan-card h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .price {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .price span {
+            font-size: 14px;
+            color: #666;
+            font-weight: 400;
+        }
+
+        .plan-features {
+            list-style: none;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .plan-features li {
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        .plan-features i {
+            color: var(--secondary-color);
+            margin-right: 10px;
+        }
+
+        /* SECCIÓN CONTACTO */
+        .contact {
+            max-width: 800px;
+            margin: 80px auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .contact-form input, .contact-form textarea {
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .contact-form textarea {
+            resize: vertical;
+            height: 150px;
+        }
+
+        .contact-form button {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 15px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .contact-form button:hover {
+            background: #003d99;
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--dark-color);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        footer p {
+            font-size: 14px;
+            color: #aaa;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none; /* Simplificado para móviles */
+            }
+            .hero h1 {
+                font-size: 36px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="navbar">
+            <a href="#" class="logo">Conecta<span>Net</span></a>
+            <ul class="nav-links">
+                <li><a href="#services">Servicios</a></li>
+                <li><a href="#plans">Planes</a></li>
+                <li><a href="#contact">Contacto</a></li>
+            </ul>
+            <a href="#plans" class="btn-cta">Contratar Ahora</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <h1>La velocidad que necesitas, <span>sin límites</span></h1>
+            <p>Disfruta de la mejor conexión de Fibra Óptica simétrica y telefonía móvil 5G para tu hogar y tu negocio.</p>
+            <a href="#plans" class="btn-cta" style="font-size: 18px; padding: 15px 30px;">Ver Planes</a>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <h2 class="section-title">Nuestros Servicios</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <i class="fas fa-wifi"></i>
+                <h3>Fibra Óptica</h3>
+                <p>Internet de alta velocidad simétrica con la menor latencia del mercado para jugar y trabajar sin cortes.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-mobile-alt"></i>
+                <h3>Telefonía Móvil 5G</h3>
+                <p>Planes móviles con llamadas ilimitadas y datos a máxima velocidad para estar siempre comunicado.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-tv"></i>
+                <h3>Televisión HD</h3>
+                <p>Accede a cientos de canales en alta definición y plataformas de streaming integradas en un solo lugar.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-building"></i>
+                <h3>Empresas</h3>
+                <p>Soluciones de red avanzadas, IP fija, centralita virtual y ciberseguridad para tu negocio.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Plans Section -->
+    <section id="plans" class="plans">
+        <h2 class="section-title">Planes Destacados</h2>
+        <div class="plans-grid">
+            <div class="plan-card">
+                <h3>Fibra Básica</h3>
+                <div class="price">$30 <span>/ mes</span></div>
+                <ul class="plan-features">
+                    <li><i class="fas fa-check"></i> 300 Mbps Simétricos</li>
+                    <li><i class="fas fa-check"></i> Router WiFi 6 Incluido</li>
+                    <li><i class="fas fa-check"></i> Sin límite de descargas</li>
+                    <li><i class="fas fa-check"></i> Soporte técnico 24/7</li>
+                </ul>
+                <a href="#contact" class="btn-cta" style="display: block; text-align: center;">Elegir Plan</a>
+            </div>
+
+            <div class="plan-card popular">
+                <div class="badge">Más Popular</div>
+                <h3>Fibra + Móvil</h3>
+                <div class="price">$50 <span>/ mes</span></div>
+                <ul class="plan-features">
+                    <li><i class="fas fa-check"></i> 600 Mbps Simétricos</li>
+                    <li><i class="fas fa-check"></i> 2 Líneas móviles (50GB c/u)</li>
+                    <li><i class="fas fa-check"></i> Router WiFi 6 Pro</li>
+                    <li><i class="fas fa-check"></i> TV Digital incluida (50 canales)</li>
+                </ul>
+                <a href="#contact" class="btn-cta" style="display: block; text-align: center;">Elegir Plan</a>
+            </div>
+
+            <div class="plan-card">
+                <h3>Fibra Total Giga</h3>
+                <div class="price">$75 <span>/ mes</span></div>
+                <ul class="plan-features">
+                    <li><i class="fas fa-check"></i> 1000 Mbps (1 Gbps)</li>
+                    <li><i class="fas fa-check"></i> 4 Líneas móviles ilimitadas</li>
+                    <li><i class="fas fa-check"></i> WiFi Mesh de alta cobertura</li>
+                    <li><i class="fas fa-check"></i> TV Premium + Streaming</li>
+                </ul>
+                <a href="#contact" class="btn-cta" style="display: block; text-align: center;">Elegir Plan</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <h2 class="section-title">¿Tienes dudas o quieres contratar?</h2>
+        <p>Déjanos tus datos y un asesor se pondrá en contacto contigo de inmediato.</p>
+        <form class="contact-form">
+            <input type="text" placeholder="Tu Nombre Completo" required>
+            <input type="email" placeholder="Correo Electrónico" required>
+            <input type="tel" placeholder="Número de Teléfono" required>
+            <textarea placeholder="Mensaje o plan de interés" required></textarea>
+            <button type="submit">Enviar Solicitud</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 ConectaNet Telecomunicaciones. Todos los derechos reservados.</p>
+    </footer>
+
+</body>
+</html>
